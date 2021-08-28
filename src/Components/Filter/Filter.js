@@ -1,16 +1,16 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import * as actions from '../../redux/actions'
+import { contactsSelectors, filter } from '../../redux'
 
 const Filter = () => {
-	const value = useSelector((state) => state.contacts.filter)
+	const value = useSelector((state) => contactsSelectors.getFilter(state))
 	const dispatch = useDispatch()
 	return (
 		<input
 			type="text"
 			name="filter"
 			value={value}
-			onChange={(e) => dispatch(actions.filter(e.currentTarget.value))}
+			onChange={(e) => dispatch(filter(e.currentTarget.value))}
 			placeholder="Enter name for Search"
 		/>
 	)

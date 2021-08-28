@@ -1,14 +1,14 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { v4 as uuid } from 'uuid'
-import contactsOperations from '../../redux/operation'
+import { contactsOperations, contactsSelectors } from '../../redux'
 
 import s from './ContactForm.module.css'
 
 export default function ContactForm() {
 	const [name, setName] = useState('')
 	const [number, setNumber] = useState('')
-	const contacts = useSelector((state) => state.contacts)
+	const contacts = useSelector((state) => contactsSelectors.getContacts(state))
 	const dispatch = useDispatch()
 
 	const handleChange = ({ target }) => {

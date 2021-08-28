@@ -1,28 +1,18 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import contactsOperation from '../../redux/operation'
-
-const getVisibleContacts = (allContacts, filter) => {
-	const normalizedFilter = filter.toLowerCase()
-
-	return allContacts.filter((items) =>
-		items.name.toLowerCase().includes(normalizedFilter)
-	)
-}
+import { contactsOperations, contactsSelectors } from '../../redux'
 
 const ContactList = () => {
-	const { isLoading, error } = useSelector((state) => state.contacts)
+	const { isLoading, error } = useSelector((state) =>
+		contactsSelectors.getContacts(state)
+	)
 	const contacts = useSelector((state) =>
-		getVisibleContacts(
-			state.contacts.items,
-			state.contacts.filter,
-			state.contacts.isLoading
-		)
+		contactsSelectors.getVisibleContacts(state)
 	)
 
 	const dispatch = useDispatch()
 	useEffect(() => {
-		dispatch(contactsOperation.fetchContacts())
+		dispatch(contactsOperations.fetchContacts())
 	}, [dispatch])
 
 	if (contacts === []) return null
@@ -39,12 +29,11 @@ const ContactList = () => {
 
 const ContactListItem = ({ id, name, number }) => {
 	const dispatch = useDispatch()
-	console.log('id', id)
 
 	return (
 		<li>
 			{name}:{number}
-			<button onClick={() => dispatch(contactsOperation.deleteContacts(id))}>
+			<button onClick={() => dispatch(contactsOperations.deleteContacts(id))}>
 				delete
 			</button>
 		</li>
