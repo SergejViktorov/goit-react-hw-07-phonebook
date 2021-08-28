@@ -1,0 +1,19 @@
+{
+  "contacts": [
+    {
+      "id": "1db7298d-de17-4717-a2ba-c69aaf7e75db",
+      "name": "Sergey",
+      "number": "677971"
+    },
+    {
+      "id": "f8e46ee3-19fb-4380-b1be-3f87bb159357",
+      "name": "vova",
+      "number": "093685565"
+    },
+    {
+      "id": "c57a9cfd-ce25-4a60-b724-817ba3a36ea8",
+      "name": "anya",
+      "number": "566971"
+    }
+  ]
+}
