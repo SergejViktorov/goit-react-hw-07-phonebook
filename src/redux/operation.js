@@ -26,7 +26,7 @@ const fetchContacts = () => async (dispatch) => {
 const addContacts = (item) => async (dispatch) => {
 	dispatch(addContactsRequest)
 	try {
-		const { data } = await axios.post('contacts/', item)
+		const { data } = await axios.post('contacts', item)
 		dispatch(addContactsSuccess(data))
 	} catch (error) {
 		dispatch(addContactsError())
